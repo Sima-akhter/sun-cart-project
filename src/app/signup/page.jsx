@@ -2,8 +2,11 @@
 import { authClient } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
+import { useRouter } from "next/navigation";
+
 
 const SignUpPage = () => {
+    const router = useRouter()
     const onSubmit = async(e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -12,7 +15,12 @@ const SignUpPage = () => {
         const { data, error } = await authClient.signUp.email({
             name,
             email,
-            password
+            password,
+            
+        }, {
+            onSuccess: () => {
+                router.push("/")
+           } 
         })
         console.log(data, error);
     }
