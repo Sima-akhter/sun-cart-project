@@ -6,4 +6,4 @@ const NextThemeProvider = ({ children }) => {
 	return <ThemeProvider attribute="class" defaultTheme="light">{children}</ThemeProvider>
 }
 
-export default NextThemeProviderj
+export default NextThemeProvider

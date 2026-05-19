@@ -4,9 +4,6 @@ import { useSession } from "@/lib/auth-client"
 import { useState } from "react"
 import { toast } from "react-toastify"
 
-// import React, { useState } from 'react'
-// import { toast } from 'react-toastify'
-// import { useSession } from '@/lib/auth-client'
 
 const ORDERS = [
 	{
