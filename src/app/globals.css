@@ -1,6 +1,3 @@
-/* @import "tailwindcss";
-@import "@heroui/styles"; */
-
 @import "tailwindcss";
 @import "@heroui/styles";
 
@@ -8,48 +5,48 @@
    LIGHT THEME
 ========================= */
 :root {
-    --background: #fffaf9;
-    --foreground: #3f1d24;
+    --background: #ffffff;
+    --foreground: #000000;
 
     --card: #ffffff;
-    --card-foreground: #3f1d24;
+    --card-foreground: #000000;
 
-    --border: #fecdd3;
+    --border: #e5e7eb;
 
-    --primary: #e11d48;
+    --primary: #F59E0B;
     --primary-foreground: #ffffff;
 
-    --secondary: #fff1f2;
-    --secondary-foreground: #9f1239;
+    --secondary: #f9fafb;
+    --secondary-foreground: #111827;
 
-    --muted: #ffe4e6;
-    --muted-foreground: #be123c;
+    --muted: #f3f4f6;
+    --muted-foreground: #6b7280;
 
-    --hover: #ffe4e6;
+    --hover: #f3f4f6;
 }
 
 /* =========================
    DARK THEME
 ========================= */
 .dark {
-    --background: #0f0a0b;
-    --foreground: #fff1f2;
+    --background: #000000;
+    --foreground: #ffffff;
 
-    --card: #1a1012;
-    --card-foreground: #fff1f2;
+    --card: #0a0a0a;
+    --card-foreground: #ffffff;
 
-    --border: #3f1d24;
+    --border: #27272a;
 
-    --primary: #fb7185;
-    --primary-foreground: #ffffff;
+    --primary: #F59E0B;
+    --primary-foreground: #000000;
 
-    --secondary: #2a1519;
-    --secondary-foreground: #fecdd3;
+    --secondary: #171717;
+    --secondary-foreground: #fafafa;
 
-    --muted: #2a1519;
-    --muted-foreground: #fda4af;
+    --muted: #171717;
+    --muted-foreground: #a1a1aa;
 
-    --hover: #3f1d24;
+    --hover: #27272a;
 }
 
 @theme inline {
@@ -108,5 +105,3 @@ h5,
 h6 {
     font-family: var(--font-heading);
 }
-
-

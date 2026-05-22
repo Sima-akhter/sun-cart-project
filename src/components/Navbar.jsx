@@ -1,257 +1,232 @@
 
-'use client'
+"use client";
 
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Menu, Sun, X } from "lucide-react";
+import { toast } from "react-toastify";
 
-import { useRouter } from 'next/navigation'
-import { toast } from 'react-toastify'
-
-import { Avatar, Button, Dropdown } from '@heroui/react'
-
-import ThemeToggler from '@/lib/ThemeToggler'
-import { authClient } from '@/lib/auth-client'
-import { Menu } from 'lucide-react'
-import Link from 'next/link'
+import ThemeToggler from "@/providers/ThemeToggler";
+import { authClient } from "@/lib/auth-client";
 
 const navLinks = [
-  {
-    label: 'Home',
-    href: '/',
-  },
-  {
-    label: 'Products',
-    href: '/products',
-  },
-]
+  { label: "Home", href: "/" },
+  { label: "Products", href: "/products" },
+  { label: "My Profile", href: "/profile" },
+];
 
 const Navbar = () => {
-  const router = useRouter()
+  const router = useRouter();
 
-  /* =========================
-      SESSION
-  ========================= */
-  const { data: session, isPending } = authClient.useSession()
-  const user = session?.user
+  const [mounted, setMounted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  /* =========================
-      LOGOUT
-  ========================= */
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const { data: session, isPending } = authClient.useSession();
+
+  const user = session?.user;
+
   const handleLogout = async () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
-          toast.success('See you soon! 👋 Logged out successfully', {
-            position: 'top-right',
-            autoClose: 3000,
-          })
-
-          router.push('/')
-          router.refresh()
+          toast.success("Logged out successfully");
+          router.push("/");
+          router.refresh();
         },
       },
-    })
-  }
+    });
+  };
 
   return (
-    <nav className='sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl'>
-      <header className='container mx-auto flex items-center justify-between py-4'>
-        {/* Logo */}
-        <Link href='/' className='group flex items-center gap-3'>
-          {/* Text logo — hidden on mobile */}
-          <div className='hidden flex-col md:flex'>
-            <span className='font-serif text-2xl font-bold tracking-tight text-foreground'>
-              Sun-Cart
-            </span>
-          </div>
+    <nav className="sticky top-0 z-50 border-b border-black/10 bg-white/90 backdrop-blur-md dark:border-white/10 dark:bg-black/90">
+      <div className="container mx-auto flex items-center justify-between px-4 py-4">
+        
+        {/* LOGO */}
+        <Link
+          href="/"
+          className="flex items-center gap-2"
+        >
+          <Sun size={20} strokeWidth={1.5} />
+
+          <span className="text-lg font-semibold uppercase tracking-tight">
+            Sun-Cart
+          </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <ul className='hidden items-center gap-8 md:flex'>
+        {/* DESKTOP NAV LINKS */}
+        <ul className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className='font-medium text-foreground transition-colors duration-200 hover:text-primary'
+                className="text-sm font-medium transition hover:opacity-70"
               >
                 {link.label}
               </Link>
             </li>
           ))}
-
-          {/* Profile Link Only When Logged In */}
-          {user && (
-            <li>
-              <Link
-                href='/profile'
-                className='font-medium text-foreground transition-colors duration-200 hover:text-primary'
-              >
-                My Profile
-              </Link>
-            </li>
-          )}
         </ul>
 
-        {/* Right Side */}
-        <div className='flex items-center gap-3'>
-          {/* Theme Toggle — always visible */}
-          <div className='rounded-full border border-border bg-secondary p-1'>
+        {/* RIGHT SIDE */}
+        <div className="flex items-center gap-3">
+
+          <div className="hidden md:block">
             <ThemeToggler />
           </div>
 
-          {/* Loading skeleton */}
-          {isPending && (
-            <div className='h-10 w-24 animate-pulse rounded-2xl bg-muted' />
-          )}
+          {!mounted || isPending ? (
+            <div className="h-10 w-10 animate-pulse rounded-full bg-gray-300 dark:bg-gray-700" />
+          ) : user ? (
+            <div className="hidden items-center gap-3 md:flex">
 
-          {/* ── DESKTOP: Logged In ── */}
-          {!isPending && user && (
-            <div className='hidden items-center gap-3 md:flex'>
-              {/* User Info */}
-              <div className='flex flex-col items-end'>
-                <span className='text-sm font-semibold text-foreground'>
-                  {user.name}
-                </span>
-                <span className='text-xs text-muted-foreground'>
-                  {user.email}
-                </span>
-              </div>
-
-              {/* Avatar */}
-              <Link href='/profile'>
-                <Avatar
-                  src={user.image || ''}
-                  name={user.name || 'User'}
-                  size='sm'
-                  isBordered
-                  color='danger'
-                  className='cursor-pointer ring-2 ring-border transition-transform hover:scale-105'
+              {/* USER AVATAR */}
+              <Link href="/profile">
+                <Image
+                  src={
+                    user.image ||
+                    "https://i.ibb.co/4pDNDk1/avatar.png"
+                  }
+                  alt="user"
+                  width={40}
+                  height={40}
+                  className="rounded-full border border-black object-cover dark:border-white"
                 />
               </Link>
 
-              {/* Logout */}
-              <Button
-                size='sm'
-                variant='flat'
-                onPress={handleLogout}
-                className='border border-border bg-secondary font-medium text-foreground transition-colors hover:bg-hover'
+              {/* LOGOUT BUTTON */}
+              <button
+                onClick={handleLogout}
+                className="rounded-sm border border-black px-4 py-2 text-sm font-medium transition hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black"
               >
                 Logout
-              </Button>
+              </button>
+            </div>
+          ) : (
+            <div className="hidden items-center gap-3 md:flex">
+
+              {/* LOGIN BUTTON */}
+              <Link
+                href="/signin"
+                className="rounded-sm border border-black px-4 py-2 text-sm font-medium transition hover:bg-black hover:text-white dark:border-white dark:hover:bg-white dark:hover:text-black"
+              >
+                Login
+              </Link>
+
+              {/* REGISTER BUTTON */}
+              <Link
+                href="/signup"
+                className="rounded-sm bg-black px-4 py-2 text-sm font-medium text-white transition hover:opacity-90 dark:bg-white dark:text-black"
+              >
+                Register
+              </Link>
             </div>
           )}
 
-          {/* ── DESKTOP: Logged Out ── */}
-          {!isPending && !user && (
-            <div className='hidden items-center gap-2 md:flex'>
-              <Button
-                asChild
-                size='sm'
-                variant='light'
-                className='font-medium text-foreground transition-colors hover:bg-hover'
-              >
-                <Link href="/signin">Sign In</Link>
-              </Button>
-
-              <Button
-                asChild
-                size='sm'
-                className='bg-primary font-medium text-primary-foreground shadow-lg transition-all hover:scale-[1.02] hover:opacity-90'
-              >
-                 <Link href="/signup">Sign Up</Link>
-              </Button>
-            </div>
-          )}
-
-          {/* ── MOBILE: Avatar (only when logged in) ── */}
-          {!isPending && user && (
-            <Link href='/profile' className='md:hidden'>
-              <Avatar
-                src={user.image || ''}
-                name={user.name || 'User'}
-                size='sm'
-                isBordered
-                color='danger'
-                className='cursor-pointer ring-2 ring-border transition-transform hover:scale-105'
-              />
-            </Link>
-          )}
-
-          {/* ── MOBILE: Hamburger Dropdown ── */}
-          <div className='md:hidden'>
-            <Dropdown>
-              {/* ফিক্সড: আলাদা <Button> বাদ দিয়ে সরাসরি Trigger-কে বাটনের মতো স্টাইল দেওয়া হয়েছে */}
-              <Dropdown.Trigger
-                aria-label='Open navigation menu'
-                className='flex items-center justify-center border border-border bg-secondary text-foreground rounded-xl h-8 w-8 cursor-pointer hover:opacity-90'
-              >
-                <div>
-                  <Menu size={18} />
-                </div>
-              </Dropdown.Trigger>
-
-              <Dropdown.Popover className='w-full mt-5'>
-                <Dropdown.Menu aria-label='Navigation menu'>
-                  {/* Nav Links */}
-                  {navLinks.map((link) => (
-                    <Dropdown.Item key={link.href} textValue={link.label}>
-                      <Link
-                        href={link.href}
-                        className='block w-full font-medium text-foreground'
-                      >
-                        {link.label}
-                      </Link>
-                    </Dropdown.Item>
-                  ))}
-
-                  {/* My Profile — only when logged in */}
-                  {user
-                    ? [
-                        <Dropdown.Item key='profile' textValue='My Profile'>
-                          <Link
-                            href='/profile'
-                            className='block w-full font-medium text-foreground'
-                          >
-                            My Profile
-                          </Link>
-                        </Dropdown.Item>,
-                        <Dropdown.Item
-                          key='logout'
-                          textValue='Logout'
-                          className='text-danger'
-                          onAction={handleLogout}
-                        >
-                          Logout
-                        </Dropdown.Item>,
-                      ]
-                    : [
-                        <Dropdown.Item key='signin' textValue='sign in'>
-                          <Link
-                            href='/login'
-                            className='block w-full font-medium text-foreground'
-                          >
-                            Sign In
-                          </Link>
-                        </Dropdown.Item>,
-                        <Dropdown.Item
-                          key='signup'
-                          textValue='Sign Up'
-                          className='font-medium text-primary'
-                        >
-                          <Link
-                            href='/signup'
-                            className='block w-full font-medium text-primary'
-                          >
-                            Sign Up
-                          </Link>
-                        </Dropdown.Item>,
-                      ]}
-                </Dropdown.Menu>
-              </Dropdown.Popover>
-            </Dropdown>
-          </div>
+          {/* MOBILE MENU BUTTON */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden"
+            aria-label="Toggle Menu"
+          >
+            {menuOpen ? (
+              <X size={22} strokeWidth={1.5} />
+            ) : (
+              <Menu size={22} strokeWidth={1.5} />
+            )}
+          </button>
         </div>
-      </header>
-    </nav>
-  )
-}
+      </div>
 
-export default Navbar
+      {/* MOBILE MENU */}
+      {menuOpen && (
+        <div className="space-y-4 border-t border-black/10 bg-white px-4 py-4 dark:border-white/10 dark:bg-black md:hidden">
+
+          {/* THEME */}
+          <div className="flex items-center justify-between border-b border-black/10 pb-4 dark:border-white/10">
+            <span className="text-sm font-medium">Theme</span>
+            <ThemeToggler />
+          </div>
+
+          {/* NAV LINKS */}
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="block py-2 text-sm font-medium"
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          {/* LOGGED IN */}
+          {mounted && user && !isPending && (
+            <div className="space-y-3 pt-2">
+
+              <Link
+                href="/profile"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3"
+              >
+                <Image
+                  src={
+                    user.image ||
+                    "https://i.ibb.co/4pDNDk1/avatar.png"
+                  }
+                  alt="user"
+                  width={40}
+                  height={40}
+                  className="rounded-full border border-black object-cover dark:border-white"
+                />
+
+                <span className="text-sm font-medium">
+                  My Profile
+                </span>
+              </Link>
+
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setMenuOpen(false);
+                }}
+                className="w-full rounded-sm border border-black px-4 py-2 text-sm font-medium dark:border-white"
+              >
+                Logout
+              </button>
+            </div>
+          )}
+
+          {/* LOGGED OUT */}
+          {mounted && !user && !isPending && (
+            <div className="flex flex-col gap-3 pt-2">
+
+              <Link
+                href="/signin"
+                onClick={() => setMenuOpen(false)}
+                className="rounded-sm border border-black px-4 py-2 text-center text-sm font-medium dark:border-white"
+              >
+                Login
+              </Link>
+
+              <Link
+                href="/signup"
+                onClick={() => setMenuOpen(false)}
+                className="rounded-sm bg-black px-4 py-2 text-center text-sm font-medium text-white dark:bg-white dark:text-black"
+              >
+                Register
+              </Link>
+            </div>
+          )}
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;

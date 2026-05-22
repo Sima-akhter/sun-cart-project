@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "name": "Ocean Blue Polarized Sunglasses",
+    "brand": "Ray-Ban",
+    "price": 145.00,
+    "rating": 4.8,
+    "stock": 12,
+    "description": "Premium polarized sunglasses providing 100% UV protection with a stylish ocean blue tint. Lightweight titanium frame for all-day comfort.",
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80",
+    "category": "Accessories"
+  },
+  {
+    "id": "2",
+    "name": "SPF 50+ Hydrating Sunscreen",
+    "brand": "Neutrogena",
+    "price": 24.99,
+    "rating": 4.5,
+    "stock": 45,
+    "description": "Lightweight, non-greasy sunscreen with intense hydration and broad-spectrum SPF 50+ protection. Water-resistant for up to 80 minutes.",
+    "image": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80",
+    "category": "Skincare"
+  },
+  {
+    "id": "3",
+    "name": "Tropical Print Swim Trunks",
+    "brand": "Chubbies",
+    "price": 59.50,
+    "rating": 4.7,
+    "stock": 8,
+    "description": "Quick-drying, 4-way stretch swim trunks featuring a vibrant tropical palm print. Built-in mesh liner for maximum comfort.",
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80",
+    "category": "Clothing"
+  },
+  {
+    "id": "4",
+    "name": "Classic Straw Sun Hat",
+    "brand": "Brixton",
+    "price": 35.00,
+    "rating": 4.6,
+    "stock": 20,
+    "description": "Wide-brim straw hat offering excellent sun protection with a classic, timeless design. Adjustable inner band for the perfect fit.",
+    "image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?w=600&q=80",
+    "category": "Accessories"
+  },
+  {
+    "id": "5",
+    "name": "Insulated Stainless Steel Water Bottle",
+    "brand": "Hydro Flask",
+    "price": 39.95,
+    "rating": 4.9,
+    "stock": 34,
+    "description": "Keep your drinks ice-cold for 24 hours with this durable, double-wall vacuum insulated bottle. BPA-free and dishwasher safe.",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=600&q=80",
+    "category": "Outdoor"
+  },
+  {
+    "id": "6",
+    "name": "Canvas Beach Tote Bag",
+    "brand": "L.L.Bean",
+    "price": 45.00,
+    "rating": 4.8,
+    "stock": 15,
+    "description": "Heavy-duty canvas beach bag with waterproof lining and ample space for all your summer essentials. Reinforced handles for durability.",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80",
+    "category": "Accessories"
+  }
+]
