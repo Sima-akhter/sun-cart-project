@@ -51,7 +51,7 @@ const SignUpPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-background">
-      <div className="w-full max-w-[400px] space-y-8">
+      <div className="w-full max-w-100 space-y-8">
         
         <div className="text-center">
           <h2 className="text-2xl font-medium tracking-tight text-foreground">
@@ -106,9 +106,9 @@ const SignUpPage = () => {
           </button>
 
           <div className="relative flex items-center py-2">
-            <div className="flex-grow border-t border-border"></div>
-            <span className="flex-shrink-0 mx-4 text-muted-foreground text-xs uppercase tracking-widest">or</span>
-            <div className="flex-grow border-t border-border"></div>
+            <div className="grow border-t border-border"></div>
+            <span className="shrink-0 mx-4 text-muted-foreground text-xs uppercase tracking-widest">or</span>
+            <div className="grow border-t border-border"></div>
           </div>
 
           <button 

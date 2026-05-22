@@ -20,7 +20,7 @@ export default async function ProductDetailsPage({ params }) {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
         {/* Image Section */}
-        <div className="relative aspect-[4/5] bg-secondary rounded-sm border border-border">
+        <div className="relative aspect-4/5 bg-secondary rounded-sm border border-border">
           <Image
             src={product.image}
             alt={product.name}

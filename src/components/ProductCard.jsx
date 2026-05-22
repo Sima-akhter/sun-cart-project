@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
     <div className="w-full rounded-sm border border-border bg-background p-3 transition hover:shadow-sm">
       
       {/* IMAGE */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-sm border border-border bg-secondary">
+      <div className="relative aspect-4/5 w-full overflow-hidden rounded-sm border border-border bg-secondary">
         <Image
           src={product.image}
           alt={product.name}

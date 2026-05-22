@@ -102,7 +102,7 @@ export default function Home() {
               </div>
               <div className="relative z-10 max-w-sm">
                 <h3 className="text-2xl font-medium text-foreground mb-2">
-                  Uncompromised Quality
+                  Uncompressed Quality
                 </h3>
                 <p className="text-muted-foreground text-sm">
                   Engineered to withstand the harshest summer conditions without
@@ -139,12 +139,12 @@ export default function Home() {
                 href="/products"
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
-                Learn more &rarr;
+                Learn more &rar;
               </Link>
             </div>
 
             {/* Box 3 */}
-            <div className="bg-background border border-border rounded-sm p-8 flex flex-col justify-between min-h-[300px]">
+            <div className="bg-background border border-border rounded-sm p-8 flex flex-col justify-between min-h-75">
               <div>
                 <h3 className="text-xl font-medium text-foreground mb-2">
                   Lightweight Design
