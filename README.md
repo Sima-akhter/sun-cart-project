@@ -69,7 +69,7 @@ A modern full-stack e-commerce web application built with Next.js 16, React 19, 
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/sun-cart.git
+git clone https://github.com/Sima-akhter/sun-cart-project.git
 ```
 
 ## 2. Move into the Project Folder
